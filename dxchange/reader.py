@@ -544,6 +544,8 @@ def read_hdf5(fname, dataset, slc=None, dtype=None, shared=False):
             else:
                 arr = np.empty(shape, dtype)
             data.read_direct(arr, _make_slice_object_a_tuple(slc))
+            # access_shape = _shape_after_slice(shape, slc) # e.g., (241, 4, 2448)
+            # then parallelize along one of the dimensions, (241,4/nproc,2448)
     except KeyError:
         return None
     _log_imported_data(fname, arr)
