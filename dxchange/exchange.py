@@ -701,9 +701,9 @@ def read_aps_32id(fname, exchange_rank=0, proj=None, sino=None, dtype=None):
     flat_grp = '/'.join([exchange_base, 'data_white'])
     dark_grp = '/'.join([exchange_base, 'data_dark'])
     theta_grp = '/'.join([exchange_base, 'theta'])
-    tomo = dxreader.read_hdf5(fname, tomo_grp, slc=(proj, sino), dtype=dtype)
-    flat = dxreader.read_hdf5(fname, flat_grp, slc=(None, sino), dtype=dtype)
-    dark = dxreader.read_hdf5(fname, dark_grp, slc=(None, sino), dtype=dtype)
+    tomo = dxreader.read_hdf5(fname, tomo_grp, slc=(proj, sino), dtype=dtype) # dataset is exchange/data, (241, 2048, 2448)
+    flat = dxreader.read_hdf5(fname, flat_grp, slc=(None, sino), dtype=dtype) # (8, 2048, 2448)
+    dark = dxreader.read_hdf5(fname, dark_grp, slc=(None, sino), dtype=dtype) # (20, 2048, 2448)
     theta = dxreader.read_hdf5(fname, theta_grp, slc=None)
 
     if (theta is None):
